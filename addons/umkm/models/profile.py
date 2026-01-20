@@ -2,7 +2,7 @@ from odoo import models, fields
 
 class UmkmProfile(models.Model):
     _name = 'umkm.profile'
-    _description = 'UMKM Profile'
+    _description = 'UMKM'
     _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin"]
 
     name = fields.Char(string='Nama Usaha', required=True)

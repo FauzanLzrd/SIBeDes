@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_umkm_profile_pembimbing,umkm.profile pembimbing,model_umkm_profile,pembimbing,1,1,1,0
+access_umkm_profile_external,umkm.profile external,model_umkm_profile,external,1,0,0,0
+access_umkm_profile_user,umkm.profile user,model_umkm_profile,base.group_user,1,0,0,0
+access_umkm_profile_admin,umkm.profile admin,model_umkm_profile,base.group_system,1,1,1,1
+
+access_pelaku_umkm_pembimbing,umkm.pelaku pembimbing,model_umkm_pelaku,pembimbing,1,1,1,0
+access_pelaku_umkm_external,umkm.pelaku external,model_umkm_pelaku,external,1,0,0,0
+access_pelaku_umkm_user,umkm.pelaku user,model_umkm_pelaku,base.group_user,1,0,0,0
+access_pelaku_umkm_admin,umkm.pelaku admin,model_umkm_pelaku,base.group_system,1,1,1,1
+
+access_umkm_products_pembimbing,umkm.products pembimbing,model_umkm_products,pembimbing,1,1,1,0
+access_umkm_products_external,umkm.products external,model_umkm_products,external,1,0,0,0
+access_umkm_products_user,umkm.products user,model_umkm_products,base.group_user,1,0,0,0
+access_umkm_products_admin,umkm.products admin,model_umkm_products,base.group_system,1,1,1,1

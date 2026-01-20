@@ -2,10 +2,10 @@ from odoo import models, fields
 
 class Products(models.Model):
     _name = 'umkm.products'
-    _description = 'UMKM Products'
+    _description = 'Products'
     _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin"]
 
-    profile_id = fields.Many2one('umkm.profile', string='UMKM Profile')
+    profile_id = fields.Many2one('umkm.profile', string='Usaha')
     name = fields.Char(string='Nama Produk', required=True)
     _type = fields.Selection([
             ('makanan_kemasan', 'Makanan Kemasan'),
@@ -34,4 +34,5 @@ class Products(models.Model):
             ('lainnya', 'Lainnya')
         ], string='Tipe Kemasan', required=True)
     kemasan_file = fields.Binary(string='File Kemasan', attachment=True)
+    image = fields.Binary(string='Foto', attachment=True, tracking=True)
     

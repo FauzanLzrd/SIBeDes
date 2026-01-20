@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="pembimbing" model="res.groups">
+            <field name="name">Pembimbing</field>
+        </record>
+        <record id="external" model="res.groups">
+            <field name="name">External</field>
+        </record>
+    </data>
+</odoo>
