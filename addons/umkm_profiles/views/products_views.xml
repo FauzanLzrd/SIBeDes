@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Products List View -->
+        <record id="view_umkm_products_list" model="ir.ui.view">
+            <field name="name">umkm.products.list</field>
+            <field name="model">umkm.products</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="profile_id"/>
+                    <field name="name"/>
+                    <field name="_type"/>
+                    <field name="price"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="netto"/>
+                    <field name="kemasan_type"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Products Form View -->
+        <record id="view_umkm_products_form" model="ir.ui.view">
+            <field name="name">umkm.products.form</field>
+            <field name="model">umkm.products</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="profile_id" readonly="1"/>
+                                <field name="_type"/>
+                                <field name="kemasan_type"/>
+                                <field name="price"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="netto"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                                <field name="komposisi"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="certificates" string="Certificates">
+                                <group col="2">
+                                    <group string="PIRT">
+                                        <field name="pirt_no"/>
+                                        <field name="pirt_file" filename="pirt_no"/>
+                                    </group>
+                                    <group string="Halal">
+                                        <field name="halal_no"/>
+                                        <field name="halal_file" filename="halal_no"/>
+                                    </group>
+                                    <group string="BPOM">
+                                        <field name="bpom_no"/>
+                                        <field name="bpom_file" filename="bpom_no"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="packaging" string="Packaging">
+                                <field name="kemasan_file"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Products View for UMKM Profile -->
+        <record id="view_umkm_products_forumkmprofile_list" model="ir.ui.view">
+            <field name="name">umkm.products.forumkmprofile.list</field>
+            <field name="model">umkm.products</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="_type"/>
+                    <field name="price"/>
+                    <field name="currency_id" invisible="1"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Products Action -->
+        <record id="action_umkm_products" model="ir.actions.act_window">
+            <field name="name">Produk UMKM</field>
+            <field name="res_model">umkm.products</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_umkm_products_list"/>
+        </record>
+
+        <!-- Products Menu -->
+        <menuitem id="menu_umkm_products" name="Produk UMKM" action="action_umkm_products"/>
+    </data>
+</odoo>

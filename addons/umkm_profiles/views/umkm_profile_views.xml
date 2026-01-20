@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- List View -->
+        <record id="view_umkm_profile_list" model="ir.ui.view">
+            <field name="name">umkm.profile.list</field>
+            <field name="model">umkm.profile</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="desa"/>
+                    <field name="business_type"/>
+                    <field name="owner_id"/>
+                    <field name="phone"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_umkm_profile_form" model="ir.ui.view">
+            <field name="name">umkm.profile.form</field>
+            <field name="model">umkm.profile</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="business_type"/>
+                                <field name="owner_id"/>
+                                <field name="desa"/>
+                                <field name="address"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image" options="{'size': [100, 100]}"/>
+                                <field name="officer"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="details" string="Details">
+                                <group>
+                                    <field name="member_ids" widget="many2many_tags"/>
+                                    <field name="description"/>
+                                    <field name="nib_no"/>
+                                    <field name="nib_file" filename="nib_no"/>
+                                    <field name="latitude"/>
+                                    <field name="longitude"/>
+                                </group>
+                            </page>
+                            <page name="products" string="Products">
+                                <field name="product_ids" ref="umkm.products.forumkmprofile.list"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_umkm_profile" model="ir.actions.act_window">
+            <field name="name">UMKM Profiles</field>
+            <field name="res_model">umkm.profile</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_umkm_profile" name="UMKM Profiles" action="action_umkm_profile"/>
+    </data>
+</odoo>

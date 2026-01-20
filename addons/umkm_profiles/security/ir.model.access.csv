@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_umkm_profile,umkm.profile,model_umkm_profile,,1,1,1,1
+access_pelaku_umkm,umkm.pelaku,model_umkm_pelaku,,1,1,1,1
+access_umkm_products,umkm.products,model_umkm_products,,1,1,1,1
