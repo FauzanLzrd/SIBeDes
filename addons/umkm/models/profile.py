@@ -37,6 +37,7 @@ class UmkmProfile(models.Model):
     image = fields.Binary(string='Foto', attachment=True)
     officer = fields.Many2one('hr.employee', string='Petugas')
     has_valid_coordinates = fields.Boolean(compute='_compute_has_valid_coordinates', string='Has Valid Coordinates')
+    date_localization = fields.Datetime(string='Geolocation Date')
 
     # @api.depends('latitude', 'longitude')
     # def _compute_has_valid_coordinates(self):

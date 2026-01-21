@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class Products(models.Model):
     _name = 'umkm.products'
@@ -35,4 +35,19 @@ class Products(models.Model):
         ], string='Tipe Kemasan', required=True)
     kemasan_file = fields.Binary(string='File Kemasan', attachment=True)
     image = fields.Binary(string='Foto', attachment=True, tracking=True)
+
+    @api.model
+    def create(self, vals):
+        # Log to diagnose where products are being created from
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.info("=== PRODUCT CRECTION DIAGNOSIS ===")
+        _logger.info(f"Context keys: {self.env.context.keys()}")
+        _logger.info(f"Context values: {dict(self.env.context)}")
+        _logger.info(f"vals: {vals}")
+        _logger.info(f"Has profile_id in vals: {'profile_id' in vals}")
+        _logger.info(f"Has default_profile_id in context: {'default_profile_id' in self.env.context}")
+        _logger.info("=====================================")
+        
+        return super(Products, self).create(vals)
     

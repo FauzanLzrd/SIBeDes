@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Leaflet Map View for UMKM Profile -->
+        <record id="view_umkm_profile_map" model="ir.ui.view">
+            <field name="name">umkm.profile.map</field>
+            <field name="model">umkm.profile</field>
+            <field name="arch" type="xml">
+                <leaflet_map
+                        field_latitude="latitude"
+                        field_longitude="longitude"
+                        field_title="name"
+                        field_address="address"
+                        field_marker_icon_image="image_1920"
+                        default_zoom="12"
+                        max_zoom="18"
+                        >
+                    <field name="name"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="address"/>
+                    <field name="desa"/>
+                    <field name="business_type"/>
+                    <field name="phone"/>
+                    <field name="image_1920"/>
+                </leaflet_map>
+            </field>
+        </record>
+
+        <!-- Action for Map View -->
+        <record id="action_umkm_profile_map" model="ir.actions.act_window">
+            <field name="name">Peta UMKM</field>
+            <field name="res_model">umkm.profile</field>
+            <field name="view_mode">leaflet_map,list,form</field>
+            <field name="view_id" ref="view_umkm_profile_map"/>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- Menu Item for Map View -->
+        <menuitem id="menu_umkm_map"
+            name="Peta"
+            action="action_umkm_profile_map"
+            parent="menu_umkm"
+            sequence="1"/>
+    </data>
+</odoo>
