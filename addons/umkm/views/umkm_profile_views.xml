@@ -22,6 +22,10 @@
             <field name="model">umkm.profile</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="action_open_whatsapp" string="WhatsApp" type="object" class="btn-success" icon="fa-whatsapp"/>
+                        <button invisible="latitude == 0.0 and longitude == 0.0" name="action_open_google_maps" string="Google Maps" type="object" class="btn-primary" icon="fa-map-marker"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>

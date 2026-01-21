@@ -47,10 +47,26 @@
                                     <field name="ktp_file" filename="nik"/>
                                 </group>
                             </page>
+                            <page name="attendances" string="Kehadiran Kelas Expert">
+                                <field name="expert_attendances" ref=""/>
+                            </page>
                         </notebook>
                     </sheet>
                     <chatter/>
                 </form>
+            </field>
+        </record>
+
+        <!-- Expert Attendances List View -->
+        <record id="view_expert_attendances_list" model="ir.ui.view">
+            <field name="name">umkm.expert_attendances.list</field>
+            <field name="model">umkm.expert_attendances</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="expert_class_id"/>
+                    <field name="attendance"/>
+                    <field name="assignment"/>
+                </list>
             </field>
         </record>
 

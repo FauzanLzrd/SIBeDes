@@ -1,9 +1,9 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class UmkmProfile(models.Model):
     _name = 'umkm.profile'
-    _description = 'UMKM'
-    _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin"]
+    _description = 'Profile UMKM'
+    _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin", "whatsapp.mixin"]
 
     name = fields.Char(string='Nama Usaha', required=True)
     desa = fields.Selection([
@@ -36,3 +36,20 @@ class UmkmProfile(models.Model):
     longitude = fields.Float(string='Longitude')
     image = fields.Binary(string='Foto', attachment=True)
     officer = fields.Many2one('hr.employee', string='Petugas')
+    has_valid_coordinates = fields.Boolean(compute='_compute_has_valid_coordinates', string='Has Valid Coordinates')
+
+    # @api.depends('latitude', 'longitude')
+    # def _compute_has_valid_coordinates(self):
+    #     for record in self:
+    #         record.has_valid_coordinates = record.latitude != 0.0 or record.longitude != 0.0
+
+    def action_open_google_maps(self):
+        self.ensure_one()
+        if self.latitude != 0.0 or self.longitude != 0.0:
+            url = f"https://www.google.com/maps?q={self.latitude},{self.longitude}"
+            return {
+                'type': 'ir.actions.act_url',
+                'url': url,
+                'target': 'new',
+            }
+        return {'type': 'ir.actions.act_window_close'}

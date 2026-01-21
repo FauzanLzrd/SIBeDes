@@ -12,6 +12,7 @@
         'views/pelaku_umkm_views.xml',
         'views/products_views.xml',
         'views/umkm_profile_views.xml',
+        'views/expert_classes_views.xml',
     ],
     'installable': True,
     'application': True,

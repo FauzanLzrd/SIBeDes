@@ -2,7 +2,7 @@ from odoo import models, fields
 
 class Products(models.Model):
     _name = 'umkm.products'
-    _description = 'Products'
+    _description = 'UMKM Products'
     _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin"]
 
     profile_id = fields.Many2one('umkm.profile', string='Usaha')

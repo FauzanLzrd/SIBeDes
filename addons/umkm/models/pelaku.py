@@ -2,8 +2,8 @@ from odoo import models, fields
 
 class PelakuUmkm(models.Model):
     _name = 'umkm.pelaku'
-    _description = 'UMKM'
-    _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin"]
+    _description = 'Pelaku UMKM'
+    _inherit = ["image.mixin", "mail.thread", "mail.activity.mixin", "whatsapp.mixin"]
 
     name = fields.Char(string='Nama', required=True, tracking=True)
     desa = fields.Selection([
@@ -25,26 +25,8 @@ class PelakuUmkm(models.Model):
     nik = fields.Char(string='NIK', tracking=True)
     address = fields.Text(string='Address', tracking=True)
     image = fields.Binary(string='Foto', attachment=True, tracking=True)
-
-    def action_open_whatsapp(self):
-        self.ensure_one()
-        if self.phone:
-            # Clean phone number: remove spaces, dashes, and ensure no leading +
-            phone = self.phone.strip().replace(' ', '').replace('-', '').lstrip('+')
-            url = f"https://wa.me/{phone}"
-            return {
-                'type': 'ir.actions.act_url',
-                'url': url,
-                'target': 'new',
-            }
-        else:
-            # Maybe show a warning if no phone
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': 'No Phone Number',
-                    'message': 'This contact has no phone number.',
-                    'type': 'warning',
-                }
-            }
+    expert_attendances = fields.One2many(
+        comodel_name="umkm.expert_attendances",
+        inverse_name="pelaku_id",
+        string="Kehadiran Kelas Expert"
+    )

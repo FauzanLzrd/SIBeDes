@@ -9,6 +9,16 @@ access_pelaku_umkm_external,umkm.pelaku external,model_umkm_pelaku,external,1,0,
 access_pelaku_umkm_user,umkm.pelaku user,model_umkm_pelaku,base.group_user,1,0,0,0
 access_pelaku_umkm_admin,umkm.pelaku admin,model_umkm_pelaku,base.group_system,1,1,1,1
 
+access_expert_classes_pembimbing,umkm.expert_classes pembimbing,model_umkm_expert_classes,pembimbing,1,1,1,0
+access_expert_classes_external,umkm.expert_classes external,model_umkm_expert_classes,external,1,0,0,0
+access_expert_classes_user,umkm.expert_classes user,model_umkm_expert_classes,base.group_user,1,0,0,0
+access_expert_classes_admin,umkm.expert_classes admin,model_umkm_expert_classes,base.group_system,1,1,1,1
+
+access_expert_attendances_pembimbing,umkm.expert_attendances pembimbing,model_umkm_expert_attendances,pembimbing,1,1,1,0
+access_expert_attendances_external,umkm.expert_attendances external,model_umkm_expert_attendances,external,1,0,0,0
+access_expert_attendances_user,umkm.expert_attendances user,model_umkm_expert_attendances,base.group_user,1,0,0,0
+access_expert_attendances_admin,umkm.expert_attendances admin,model_umkm_expert_attendances,base.group_system,1,1,1,1
+
 access_umkm_products_pembimbing,umkm.products pembimbing,model_umkm_products,pembimbing,1,1,1,0
 access_umkm_products_external,umkm.products external,model_umkm_products,external,1,0,0,0
 access_umkm_products_user,umkm.products user,model_umkm_products,base.group_user,1,0,0,0
