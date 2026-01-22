@@ -7,11 +7,11 @@
             <field name="model">umkm.profile</field>
             <field name="arch" type="xml">
                 <list>
-                    <field name="name"/>
-                    <field name="desa"/>
-                    <field name="business_type"/>
-                    <field name="owner_id"/>
-                    <field name="phone"/>
+                    <field name="name" placeholder="Masukkan nama UMKM"/>
+                    <field name="desa" placeholder="Masukkan nama desa"/>
+                    <field name="business_type" placeholder="Masukkan jenis usaha"/>
+                    <field name="owner_id" placeholder="Pilih pemilik"/>
+                    <field name="phone" placeholder="Masukkan nomor telepon"/>
                 </list>
             </field>
         </record>
@@ -29,15 +29,15 @@
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
-                            <h1><field name="name"/></h1>
+                            <h1><field name="name" placeholder="Masukkan nama UMKM"/></h1>
                         </div>
                         <group>
                             <group>
-                                <field name="business_type"/>
-                                <field name="owner_id"/>
-                                <field name="desa"/>
-                                <field name="address"/>
-                                <field name="phone"/>
+                                <field name="business_type" placeholder="Masukkan jenis usaha"/>
+                                <field name="owner_id" placeholder="Pilih pemilik"/>
+                                <field name="desa" placeholder="Masukkan nama desa"/>
+                                <field name="address" placeholder="Masukkan alamat"/>
+                                <field name="phone" placeholder="Masukkan nomor telepon"/>
                                 <field name="email"/>
                             </group>
                             <group>
@@ -82,18 +82,20 @@
             name="Profil"
             action="action_umkm_profile"
             parent="menu_umkm"
-            sequence="2"/>
+            sequence="10"/>
 
         <!-- Pelaku UMKM Menu -->
         <menuitem id="menu_pelaku_umkm" 
             name="Pelaku" 
             parent="menu_umkm" 
-            action="action_pelaku_umkm"/>
+            action="action_pelaku_umkm"
+            sequence="20"/>
 
         <!-- Products Menu -->
         <menuitem id="menu_umkm_products" 
             name="Produk" 
             parent="menu_umkm" 
-            action="action_umkm_products"/>
+            action="action_umkm_products"
+            sequence="30"/>
     </data>
 </odoo>

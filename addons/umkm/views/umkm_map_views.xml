@@ -15,14 +15,14 @@
                         default_zoom="12"
                         max_zoom="18"
                         >
-                    <field name="name"/>
-                    <field name="latitude"/>
-                    <field name="longitude"/>
-                    <field name="address"/>
-                    <field name="desa"/>
-                    <field name="business_type"/>
-                    <field name="phone"/>
-                    <field name="image_1920"/>
+                    <field name="name" placeholder="Masukkan nama UMKM"/>
+                    <field name="latitude" placeholder="Masukkan latitude"/>
+                    <field name="longitude" placeholder="Masukkan longitude"/>
+                    <field name="address" placeholder="Masukkan alamat"/>
+                    <field name="desa" placeholder="Masukkan nama desa"/>
+                    <field name="business_type" placeholder="Masukkan jenis usaha"/>
+                    <field name="phone" placeholder="Masukkan nomor telepon"/>
+                    <field name="image_1920" placeholder="Unggah gambar"/>
                 </leaflet_map>
             </field>
         </record>
@@ -41,6 +41,6 @@
             name="Peta"
             action="action_umkm_profile_map"
             parent="menu_umkm"
-            sequence="1"/>
+            sequence="40"/>
     </data>
 </odoo>

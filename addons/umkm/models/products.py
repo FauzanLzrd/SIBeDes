@@ -20,10 +20,28 @@ class Products(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id)
     price = fields.Monetary(string='Harga', currency_field='currency_id')
     netto = fields.Integer(string='Netto (gram/ml)')
+    pirt_status = fields.Selection([('not_needed', 'Tidak Memerlukan'),
+            ('potential_not_have', 'Belum Memiliki'),
+            ('potential_progress', 'Proses Pembuatan'),
+            ('owned', 'Memiliki'),
+            ('owned_created', 'Dibuat oleh Tim'),
+        ], string='Status PIRT')
     pirt_no = fields.Char(string='No. PIRT')
     pirt_file = fields.Binary(string='File PIRT', attachment=True)
+    halal_status = fields.Selection([('not_needed', 'Tidak Memerlukan'),
+            ('potential_not_have', 'Belum Memiliki'),
+            ('potential_progress', 'Proses Pembuatan'),
+            ('owned', 'Memiliki'),
+            ('owned_created', 'Dibuat oleh Tim'),
+        ], string='Status Halal')
     halal_no = fields.Char(string='No. Halal')
     halal_file = fields.Binary(string='File Halal', attachment=True)
+    bpom_status = fields.Selection([('not_needed', 'Tidak Memerlukan'),
+            ('potential_not_have', 'Belum Memiliki'),
+            ('potential_progress', 'Proses Pembuatan'),
+            ('owned', 'Memiliki'),
+            ('owned_created', 'Dibuat oleh Tim'),
+        ], string='Status BPOM')
     bpom_no = fields.Char(string='No. BPOM')
     bpom_file = fields.Binary(string='File BPOM', attachment=True)
     kemasan_type = fields.Selection([
