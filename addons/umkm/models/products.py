@@ -20,7 +20,7 @@ class Products(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id)
     price = fields.Monetary(string='Harga', currency_field='currency_id')
     price_display = fields.Char(string='Harga Display', compute='_compute_price_display', store=False)
-    netto = fields.Integer(string='Netto')
+    netto = fields.Integer(string='Netto', default=100)
     netto_unit = fields.Selection([
             ('gram', 'Gram'),
             ('ml', 'ml'),

@@ -66,11 +66,68 @@
             </field>
         </record>
 
+        <!-- Kanban View -->
+        <record id="view_umkm_profile_kanban" model="ir.ui.view">
+            <field name="name">umkm.profile.kanban</field>
+            <field name="model">umkm.profile</field>
+            <field name="arch" type="xml">
+                <kanban sample="1" create="false">
+                    <field name="image_1920"/>
+                    <field name="name"/>
+                    <field name="business_type"/>
+                    <field name="owner_id"/>
+                    <field name="desa"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="officer"/>
+                    <templates>
+                        <t t-name="card" class="flex-row">
+                            <aside class="o_kanban_aside_full">
+                                <div class="position-relative w-100 h-auto m-0">
+                                    <field name="image_1920" alt="Profile image" class="h-100" widget="image" options="{'img_class': 'object-fit-contain'}"/>
+                                </div>
+                            </aside>
+                            <main class="ps-2">
+                                <div class="mb-1">
+                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                                </div>
+                                <div t-if="record.business_type.raw_value">
+                                    <i class="fa fa-fw me-1 fa-building text-primary" title="Business Type"/>
+                                    <field name="business_type"/>
+                                </div>
+                                <div t-if="record.owner_id.raw_value">
+                                    <i class="fa fa-fw me-1 fa-user text-primary" title="Owner"/>
+                                    <field name="owner_id"/>
+                                </div>
+                                <div t-if="record.desa.raw_value">
+                                    <i class="fa fa-fw me-1 fa-map-marker text-primary" title="Village"/>
+                                    <field name="desa"/>
+                                </div>
+                                <div t-if="record.phone.raw_value">
+                                    <i class="fa fa-fw me-1 fa-phone text-primary" title="Phone"/>
+                                    <field name="phone"/>
+                                </div>
+                                <div t-if="record.email.raw_value">
+                                    <i class="fa fa-fw me-1 fa-envelope text-primary" title="Email"/>
+                                    <field name="email"/>
+                                </div>
+                                <div t-if="record.officer.raw_value">
+                                    <i class="fa fa-fw me-1 fa-user-tie text-primary" title="Officer"/>
+                                    <field name="officer"/>
+                                </div>
+                            </main>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <!-- Action -->
         <record id="action_umkm_profile" model="ir.actions.act_window">
             <field name="name">Profil UMKM</field>
             <field name="res_model">umkm.profile</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="view_id" ref="view_umkm_profile_kanban"/>
         </record>
 
         <!-- Menu -->

@@ -50,11 +50,8 @@
                     <group>
                         <group>
                             <field name="profile_id" readonly="1" placeholder="UMKM Profile"/>
-                            <field name="kemasan_type" placeholder="Packaging Type"/>
-                            <div class="o_row">
-                                <field name="netto" placeholder="Net Weight"/>
-                                <field name="netto_unit" nolabel="1"/>
-                            </div>
+                            <field name="netto" string="Netto" placeholder="Net Weight"/>
+                            <field name="netto_unit"/>
                         </group>
                         <group>
                             <field name="komposisi" placeholder="Composition"/>
@@ -82,7 +79,10 @@
                             </group>
                         </page>
                         <page name="packaging" string="Packaging">
-                            <field name="kemasan_file" placeholder="Unggah file kemasan"/>
+                            <group>
+                                <field name="kemasan_type" placeholder="Packaging Type"/>
+                                <field name="kemasan_file" placeholder="Unggah file kemasan"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
