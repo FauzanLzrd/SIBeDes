@@ -6,15 +6,13 @@
             <field name="name">umkm.products.list</field>
             <field name="model">umkm.products</field>
             <field name="arch" type="xml">
-                <list string="Products" sample="1" multi_edit="1" create="false">
+                <list string="Products" sample="1" multi_edit="1" create="true">
                     <field name="image_1920" widget="image" options="{'size': [24, 24], 'img_class': 'o_avatar rounded'}" width="30" nolabel="1"/>
                     <field name="name" string="Name"/>
                     <field name="_type" string="Type" optional="show"/>
-                    <field name="price_display" optional="show"/>
+                    <!-- <field name="price_display" optional="show"/>
                     <field name="currency_id" invisible="1"/>
-                    <field name="price" invisible="1"/>
-                    <field name="netto" optional="hide"/>
-                    <field name="kemasan_type" optional="hide"/>
+                    <field name="price" invisible="1"/> -->
                     <field name="profile_id" optional="hide"/>
                 </list>
             </field>
@@ -25,7 +23,7 @@
             <field name="name">umkm.products.form</field>
             <field name="model">umkm.products</field>
             <field name="arch" type="xml">
-                <form string="Products" create="false">
+                <form string="Products" create="true">
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
                     <div class="mb8">
@@ -39,22 +37,22 @@
                                     <i class="fa fa-fw me-1 fa-tag text-primary" title="Type"/>
                                     <field name="_type" class="w-100" placeholder="Product Type"/>
                                 </div>
-                                <div class="d-flex align-items-baseline w-md-50">
+                                <!-- <div class="d-flex align-items-baseline w-md-50">
                                     <i class="fa fa-fw me-1 fa-money text-primary" title="Price"/>
                                     <field name="price" class="w-100" placeholder="Price"/>
                                     <field name="currency_id" invisible="1"/>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     <group>
                         <group>
-                            <field name="profile_id" readonly="1" placeholder="UMKM Profile"/>
-                            <field name="netto" string="Netto" placeholder="Net Weight"/>
-                            <field name="netto_unit"/>
+                            <field name="profile_id" placeholder="UMKM Profile"/>
+                            <!-- <field name="netto" string="Netto" placeholder="Net Weight"/>
+                            <field name="netto_unit"/> -->
+                            <field name="komposisi" placeholder="Composition"/>
                         </group>
                         <group>
-                            <field name="komposisi" placeholder="Composition"/>
                             <field name="description" placeholder="Description"/>
                         </group>
                     </group>
@@ -79,10 +77,17 @@
                             </group>
                         </page>
                         <page name="packaging" string="Packaging">
-                            <group>
-                                <field name="kemasan_type" placeholder="Packaging Type"/>
-                                <field name="kemasan_file" placeholder="Unggah file kemasan"/>
-                            </group>
+                            <field name="packaging_ids">
+                                <list editable="bottom">
+                                    <field name="type"/>
+                                    <field name="netto"/>
+                                    <field name="netto_unit"/>
+                                    <field name="price"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="packaging_file" filename="packaging_file_name"/>
+                                    <field name="packaging_file_name" invisible="1"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -96,11 +101,11 @@
             <field name="name">umkm.products.kanban</field>
             <field name="model">umkm.products</field>
             <field name="arch" type="xml">
-                <kanban sample="1" create="false">
+                <kanban sample="1" create="true">
                     <field name="image_1920"/>
                     <field name="_type"/>
-                    <field name="price"/>
-                    <field name="price_display"/>
+                    <!-- <field name="price"/>
+                    <field name="price_display"/> -->
                     <field name="currency_id"/>
                     <field name="profile_id"/>
                     <field name="netto"/>
@@ -126,15 +131,15 @@
                                     <i class="fa fa-fw me-1 fa-tag text-primary" title="Type"/>
                                     <field name="_type"/>
                                 </div>
-                                <div t-if="record.price.raw_value">
+                                <!-- <div t-if="record.price.raw_value">
                                     <i class="fa fa-fw me-1 fa-money text-primary" title="Price"/>
                                     <field name="price_display"/>
                                     <field name="currency_id" invisible="1"/>
-                                </div>
-                                <div t-if="record.netto.raw_value">
+                                </div> -->
+                                <!-- <div t-if="record.netto.raw_value">
                                     <i class="fa fa-fw me-1 fa-balance-scale text-primary" title="Weight"/>
                                     <field name="netto_display"/>
-                                </div>
+                                </div> -->
                                 <!-- <div t-if="record.kemasan_type.raw_value">
                                     <i class="fa fa-fw me-1 fa-dropbox text-primary" title="Packaging"/>
                                     <field name="kemasan_type"/>

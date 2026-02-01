@@ -23,3 +23,8 @@ access_umkm_products_pembimbing,umkm.products pembimbing,model_umkm_products,pem
 access_umkm_products_external,umkm.products external,model_umkm_products,external,1,0,0,0
 access_umkm_products_user,umkm.products user,model_umkm_products,base.group_user,1,0,0,0
 access_umkm_products_admin,umkm.products admin,model_umkm_products,base.group_system,1,1,1,1
+
+access_umkm_packaging_pembimbing,umkm.packaging pembimbing,model_umkm_packaging,pembimbing,1,1,1,0
+access_umkm_packaging_external,umkm.packaging external,model_umkm_packaging,external,1,0,0,0
+access_umkm_packaging_user,umkm.packaging user,model_umkm_packaging,base.group_user,1,0,0,0
+access_umkm_packaging_admin,umkm.packaging admin,model_umkm_packaging,base.group_system,1,1,1,1

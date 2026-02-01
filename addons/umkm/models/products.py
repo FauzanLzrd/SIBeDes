@@ -50,14 +50,7 @@ class Products(models.Model):
         ], string='Status BPOM')
     bpom_no = fields.Char(string='No. BPOM')
     bpom_file = fields.Binary(string='File BPOM', attachment=True)
-    kemasan_type = fields.Selection([
-            ('plastik', 'Plastik'),
-            ('kardus', 'Kardus'),
-            ('kaleng', 'Kaleng'),
-            ('botol', 'Botol'),
-            ('lainnya', 'Lainnya')
-        ], string='Tipe Kemasan', required=True)
-    kemasan_file = fields.Binary(string='File Kemasan', attachment=True)
+    packaging_ids = fields.One2many('umkm.packaging', 'product_id', string='Packaging')
     image = fields.Binary(string='Foto', attachment=True, tracking=True)
 
     @api.depends('price')

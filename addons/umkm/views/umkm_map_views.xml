@@ -33,6 +33,7 @@
             <field name="res_model">umkm.profile</field>
             <field name="view_mode">leaflet_map,list,form</field>
             <field name="view_id" ref="view_umkm_profile_map"/>
+            <field name="domain">[('is_favorite', '=', True), ('latitude', '!=', 0.0), ('longitude', '!=', 0.0)]</field>
             <field name="context">{}</field>
         </record>
 

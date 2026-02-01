@@ -6,7 +6,8 @@
             <field name="name">umkm.profile.list</field>
             <field name="model">umkm.profile</field>
             <field name="arch" type="xml">
-                <list>
+                <list default_order="is_favorite desc, name">
+                    <field name="is_favorite" widget="boolean_favorite" nolabel="1"/>
                     <field name="name" placeholder="Masukkan nama UMKM"/>
                     <field name="desa" placeholder="Masukkan nama desa"/>
                     <field name="business_type" placeholder="Masukkan jenis usaha"/>
@@ -23,6 +24,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
+                        <field name="is_favorite" widget="boolean_favorite" nolabel="1"/>
                         <button name="action_open_whatsapp" string="WhatsApp" type="object" class="btn-success" icon="fa-whatsapp"/>
                         <button invisible="latitude == 0.0 and longitude == 0.0" name="action_open_google_maps" string="Google Maps" type="object" class="btn-primary" icon="fa-map-marker"/>
                     </header>
@@ -52,8 +54,8 @@
                                     <field name="description"/>
                                     <field name="nib_no"/>
                                     <field name="nib_file" filename="nib_no"/>
-                                    <field name="latitude"/>
-                                    <field name="longitude"/>
+                                    <field name="latitude" widget="float" digits="[16, 5]"/>
+                                    <field name="longitude" widget="float" digits="[16, 5]"/>
                                 </group>
                             </page>
                             <page name="products" string="Products">
@@ -71,7 +73,7 @@
             <field name="name">umkm.profile.kanban</field>
             <field name="model">umkm.profile</field>
             <field name="arch" type="xml">
-                <kanban sample="1" create="false">
+                <kanban sample="1" create="true" default_order="is_favorite desc, name">
                     <field name="image_1920"/>
                     <field name="name"/>
                     <field name="business_type"/>
@@ -80,6 +82,7 @@
                     <field name="phone"/>
                     <field name="email"/>
                     <field name="officer"/>
+                    <field name="is_favorite"/>
                     <templates>
                         <t t-name="card" class="flex-row">
                             <aside class="o_kanban_aside_full">
@@ -114,6 +117,9 @@
                                 <div t-if="record.officer.raw_value">
                                     <i class="fa fa-fw me-1 fa-user-tie text-primary" title="Officer"/>
                                     <field name="officer"/>
+                                </div>
+                                <div class="o_kanban_record_top position-absolute top-0 end-0 m-2">
+                                    <field name="is_favorite" widget="boolean_favorite" nolabel="1"/>
                                 </div>
                             </main>
                         </t>

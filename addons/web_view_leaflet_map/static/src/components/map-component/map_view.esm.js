@@ -274,7 +274,10 @@ export class MapRenderer extends Component {
         };
 
         if (this.fieldMarkerIconImage) {
-            result.icon = this.prepareMarkerIcon(record);
+            const icon = this.prepareMarkerIcon(record);
+            if (icon) {
+                result.icon = icon;
+            }
         }
 
         return result;
