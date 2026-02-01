@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Products Search View -->
+        <record id="view_umkm_products_search" model="ir.ui.view">
+            <field name="name">umkm.products.search</field>
+            <field name="model">umkm.products</field>
+            <field name="arch" type="xml">
+                <search string="Search Products">
+                    <field name="name"/>
+                    <field name="_type"/>
+                    <field name="profile_id"/>
+                    <filter string="Has PIRT" name="has_pirt" domain="[('pirt_status', 'in', ['owned', 'owned_created'])]"/>
+                    <filter string="Has Halal" name="has_halal" domain="[('halal_status', 'in', ['owned', 'owned_created'])]"/>
+                    <filter string="Has BPOM" name="has_bpom" domain="[('bpom_status', 'in', ['owned', 'owned_created'])]"/>
+                </search>
+            </field>
+        </record>
+
         <!-- Products List View -->
         <record id="view_umkm_products_list" model="ir.ui.view">
             <field name="name">umkm.products.list</field>
@@ -10,9 +26,6 @@
                     <field name="image_1920" widget="image" options="{'size': [24, 24], 'img_class': 'o_avatar rounded'}" width="30" nolabel="1"/>
                     <field name="name" string="Name"/>
                     <field name="_type" string="Type" optional="show"/>
-                    <!-- <field name="price_display" optional="show"/>
-                    <field name="currency_id" invisible="1"/>
-                    <field name="price" invisible="1"/> -->
                     <field name="profile_id" optional="hide"/>
                 </list>
             </field>
@@ -37,19 +50,12 @@
                                     <i class="fa fa-fw me-1 fa-tag text-primary" title="Type"/>
                                     <field name="_type" class="w-100" placeholder="Product Type"/>
                                 </div>
-                                <!-- <div class="d-flex align-items-baseline w-md-50">
-                                    <i class="fa fa-fw me-1 fa-money text-primary" title="Price"/>
-                                    <field name="price" class="w-100" placeholder="Price"/>
-                                    <field name="currency_id" invisible="1"/>
-                                </div> -->
                             </div>
                         </div>
                     </div>
                     <group>
                         <group>
                             <field name="profile_id" placeholder="UMKM Profile"/>
-                            <!-- <field name="netto" string="Netto" placeholder="Net Weight"/>
-                            <field name="netto_unit"/> -->
                             <field name="komposisi" placeholder="Composition"/>
                         </group>
                         <group>
@@ -104,14 +110,17 @@
                 <kanban sample="1" create="true">
                     <field name="image_1920"/>
                     <field name="_type"/>
-                    <!-- <field name="price"/>
-                    <field name="price_display"/> -->
                     <field name="currency_id"/>
                     <field name="profile_id"/>
                     <field name="netto"/>
                     <field name="netto_display"/>
-                    <!-- <field name="kemasan_type"/> -->
-                    <field name="netto"/>
+                    <field name="show_certificates"/>
+                    <field name="pirt_icon_color"/>
+                    <field name="halal_icon_color"/>
+                    <field name="bpom_icon_color"/>
+                    <field name="pirt_tooltip"/>
+                    <field name="halal_tooltip"/>
+                    <field name="bpom_tooltip"/>
                     <templates>
                         <t t-name="card" class="flex-row">
                             <aside class="o_kanban_aside_full">
@@ -131,19 +140,57 @@
                                     <i class="fa fa-fw me-1 fa-tag text-primary" title="Type"/>
                                     <field name="_type"/>
                                 </div>
-                                <!-- <div t-if="record.price.raw_value">
-                                    <i class="fa fa-fw me-1 fa-money text-primary" title="Price"/>
-                                    <field name="price_display"/>
-                                    <field name="currency_id" invisible="1"/>
-                                </div> -->
-                                <!-- <div t-if="record.netto.raw_value">
-                                    <i class="fa fa-fw me-1 fa-balance-scale text-primary" title="Weight"/>
-                                    <field name="netto_display"/>
-                                </div> -->
-                                <!-- <div t-if="record.kemasan_type.raw_value">
-                                    <i class="fa fa-fw me-1 fa-dropbox text-primary" title="Packaging"/>
-                                    <field name="kemasan_type"/>
-                                </div> -->
+                                <div t-if="record.show_certificates.raw_value"
+                                     class="mt-2 d-flex flex-row gap-1 justify-content-end align-items-center">
+                                    <!-- PIRT Icon -->
+                                    <span t-if="record.pirt_icon_color.raw_value == 'grey'"
+                                          t-att-title="record.pirt_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #6c757d;">
+                                        P
+                                    </span>
+                                    <span t-if="record.pirt_icon_color.raw_value == 'yellow'"
+                                          t-att-title="record.pirt_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: #212529; background-color: #ffc107;">
+                                        P
+                                    </span>
+                                    <span t-if="record.pirt_icon_color.raw_value == 'green'"
+                                          t-att-title="record.pirt_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #28a745;">
+                                        P
+                                    </span>
+                                    <!-- Halal Icon -->
+                                    <span t-if="record.halal_icon_color.raw_value == 'grey'"
+                                          t-att-title="record.halal_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #6c757d;">
+                                        H
+                                    </span>
+                                    <span t-if="record.halal_icon_color.raw_value == 'yellow'"
+                                          t-att-title="record.halal_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: #212529; background-color: #ffc107;">
+                                        H
+                                    </span>
+                                    <span t-if="record.halal_icon_color.raw_value == 'green'"
+                                          t-att-title="record.halal_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #28a745;">
+                                        H
+                                    </span>
+                                    <!-- BPOM Icon -->
+                                    <span t-if="record.bpom_icon_color.raw_value == 'grey'"
+                                          t-att-title="record.bpom_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #6c757d;">
+                                        B
+                                    </span>
+                                    <span t-if="record.bpom_icon_color.raw_value == 'yellow'"
+                                          t-att-title="record.bpom_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: #212529; background-color: #ffc107;">
+                                        B
+                                    </span>
+                                    <span t-if="record.bpom_icon_color.raw_value == 'green'"
+                                          t-att-title="record.bpom_tooltip.raw_value"
+                                          style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px; font-weight: bold; font-size: 14px; color: white; background-color: #28a745;">
+                                        B
+                                    </span>
+                                </div>
                             </main>
                         </t>
                     </templates>
@@ -171,6 +218,7 @@
             <field name="res_model">umkm.products</field>
             <field name="view_mode">kanban,list,form</field>
             <field name="view_id" ref="view_umkm_products_kanban"/>
+            <field name="search_view_id" ref="view_umkm_products_search"/>
         </record>
     </data>
 </odoo>
